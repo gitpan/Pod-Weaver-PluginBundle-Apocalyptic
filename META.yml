@@ -23,7 +23,7 @@ no_index:
 provides:
   Pod::Weaver::PluginBundle::Apocalyptic:
     file: lib/Pod/Weaver/PluginBundle/Apocalyptic.pm
-    version: 0.001
+    version: 0.002
 requires:
   Pod::Elemental::Transformer::List: 0.101620
   Pod::Weaver::Config::Assembler: 3.101632
@@ -39,7 +39,7 @@ resources:
   homepage: http://search.cpan.org/dist/Pod-Weaver-PluginBundle-Apocalyptic/
   license: http://dev.perl.org/licenses/
   repository: git://github.com/apocalypse/perl-pod-weaver-pluginbundle-apocalyptic.git
-version: 0.001
+version: 0.002
 x_BuiltWith:
   modules:
     File::Find: 1.12

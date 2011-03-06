@@ -9,7 +9,7 @@
 use strict; use warnings;
 package Pod::Weaver::PluginBundle::Apocalyptic;
 BEGIN {
-  $Pod::Weaver::PluginBundle::Apocalyptic::VERSION = '0.001';
+  $Pod::Weaver::PluginBundle::Apocalyptic::VERSION = '0.002';
 }
 BEGIN {
   $Pod::Weaver::PluginBundle::Apocalyptic::AUTHORITY = 'cpan:APOCAL';
@@ -47,7 +47,7 @@ sub mvp_bundle_config {
 			allow_nonpod	=> 1,
 			flatten		=> 0,
 		} ],
-		[ '@Apocalyptic/StopWords',	_exp('StopWords'), {} ],
+		[ '@Apocalyptic/StopWords',	_exp('-StopWords'), {} ],
 
 		# Start the POD!
 		[ '@Apocalyptic/Name',		_exp('Name'), {} ],
@@ -119,6 +119,11 @@ sub mvp_bundle_config {
 __END__
 =pod
 
+=for :stopwords Apocalypse cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee
+diff irc mailto metadata placeholders
+
+=encoding utf-8
+
 =for Pod::Coverage mvp_bundle_config
 
 =head1 NAME
@@ -127,7 +132,7 @@ Pod::Weaver::PluginBundle::Apocalyptic - Let the apocalypse generate your POD!
 
 =head1 VERSION
 
-  This document describes v0.001 of Pod::Weaver::PluginBundle::Apocalyptic - released March 05, 2011 as part of Pod-Weaver-PluginBundle-Apocalyptic.
+  This document describes v0.002 of Pod::Weaver::PluginBundle::Apocalyptic - released March 05, 2011 as part of Pod-Weaver-PluginBundle-Apocalyptic.
 
 =head1 DESCRIPTION
 
@@ -149,7 +154,7 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[-Encoding]			; add the =encoding command to your POD via Pod::Weaver::Plugin::Encoding
 	encoding = utf-8
 	[Region / Pod::Coverage]	; move any Pod::Coverage markers to the top ( =for Pod::Coverage foo bar )
-	[StopWords]			; gather our stopwords and add some extra ones via Pod::Weaver::Section::StopWords
+	[-StopWords]			; gather our stopwords and add some extra ones via Pod::Weaver::Plugin::StopWords
 
 	[Name]				; automatically generate the NAME section
 	[Version]			; automatically generate the VERSION section
@@ -229,7 +234,7 @@ L<Pod::Weaver::Plugin::Encoding|Pod::Weaver::Plugin::Encoding>
 
 =item *
 
-L<Pod::Weaver::Section::StopWords|Pod::Weaver::Section::StopWords>
+L<Pod::Weaver::Plugin::StopWords|Pod::Weaver::Plugin::StopWords>
 
 =item *
 
@@ -252,8 +257,6 @@ L<Pod::Elemental::Transformer::List|Pod::Elemental::Transformer::List>
 L<Pod::Weaver::Plugin::EnsureUniqueSections|Pod::Weaver::Plugin::EnsureUniqueSections>
 
 =back
-
-=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders
 
 =head1 SUPPORT
 
@@ -381,6 +384,29 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 The full text of the license can be found in the LICENSE file included with this distribution.
+
+=head1 DISCLAIMER OF WARRANTY
+
+BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT
+WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER
+PARTIES PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND,
+EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE
+SOFTWARE IS WITH YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME
+THE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE LIABLE
+TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL, OR
+CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE
+SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
+RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
+FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+DAMAGES.
 
 =cut
 

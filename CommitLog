@@ -1,3 +1,13 @@
+==============================
+9999-99-99 99:99:99 +0000 HEAD
+==============================
+
+  commit 798189cdca8cc4b5fcc16fcf9b5175a9705713e6
+  Author: Apocalypse <perl@0ne.us>
+  Date:   Sat Mar 5 17:45:21 2011 -0700
+  
+    d0h StopWords is a Plugin not a Section, dunno how I missed that 
+
 ===================================
 End of changes in the last 365 days
 ===================================

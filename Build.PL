@@ -20,7 +20,7 @@ my %module_build_args = (
     'Apocalypse <APOCAL@cpan.org>'
   ],
   'dist_name' => 'Pod-Weaver-PluginBundle-Apocalyptic',
-  'dist_version' => '0.001',
+  'dist_version' => '0.002',
   'license' => 'perl',
   'module_name' => 'Pod::Weaver::PluginBundle::Apocalyptic',
   'recommends' => {},
