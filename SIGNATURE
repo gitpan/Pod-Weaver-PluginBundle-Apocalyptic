@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.66.
+signed via the Module::Signature module, version 0.68.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,27 +14,27 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 c413fe422f22d2ccb04766effb073168797c4d8b Build.PL
-SHA1 1981c759558c2ec9ff9383dae2669ae343ede603 Changes
-SHA1 50e932b0a1b24e08f2f0bfa76a95ed68d1b9c92c CommitLog
+SHA1 c7829c941713e0d79dad421aefa1a138ec940235 Build.PL
+SHA1 9f0a880a7f5801f5a0f2f8a1e89ebf9af15f2ac8 Changes
+SHA1 7dac7dce1ad1b5bf69bb7d514e38567af3089b99 CommitLog
 SHA1 6abce657a26a169a03be1158907d21793c09341c INSTALL
-SHA1 263360e99a0de4d587fedefe1a919dcf61af1d10 LICENSE
+SHA1 b21ab868c795a981ac84ecee646535320cc1e706 LICENSE
 SHA1 fdbfccb1aa9948da640a1c1569aa8b48be54f2e2 MANIFEST
-SHA1 9dfc07c5655b958e800189837f3ddd37ca050bfe MANIFEST.SKIP
-SHA1 341ac44f60baab8f533abdb667fd3d24f52a0a9c META.json
-SHA1 5b34a100a9dae25ab15bed40dc3e5ec462f5b2ea META.yml
-SHA1 54b4ba4fc6dfb86ca2b9f60c8404981c6ddeee98 Makefile.PL
-SHA1 5eb9b7a9067e917b04bf7e387a8ce335e232cefa README
+SHA1 68180cbb55de39be860656cefef6f84f790e23a7 MANIFEST.SKIP
+SHA1 fa772307714274b0510b1acaa45a2101d5d52301 META.json
+SHA1 e43e64b14d23e7313d1977d1ad9d3f03114b53aa META.yml
+SHA1 48c5025d5c0ca1b375887dcc017a555074f13c85 Makefile.PL
+SHA1 78beef6bf615c7f6b5bc75ff2e9156b4b829dd5a README
 SHA1 bcf83d3a8005559ac1bf0e96c56ecfe60dd5163e dist.ini
 SHA1 b016bcdb231ceac2f614ce51f701a030cdbcffe3 examples/weaver.ini
-SHA1 520d4789d0b626d06341f7cc990d9bfa697a697c lib/Pod/Weaver/PluginBundle/Apocalyptic.pm
-SHA1 8585d4188b731e3e88c138994efb8327180a4228 t/00-compile.t
-SHA1 31c170dc32d1da524815b9cbd8ff13ab04c8fc92 t/000-report-versions-tiny.t
-SHA1 e9dc3941cb0aa480238b74383ac0cdb1ad12a0f4 t/apocalypse.t
+SHA1 31557919bd7f882acf44f86fac59c2356c4bb5a1 lib/Pod/Weaver/PluginBundle/Apocalyptic.pm
+SHA1 0510904899ba1be32d0961b6e3eb460f8bf9693f t/00-compile.t
+SHA1 9384ade83869dd8a6f9cc76ff125385c056c6bb8 t/000-report-versions-tiny.t
+SHA1 a266230300760c7594c2614fe49f195ceabca47b t/apocalypse.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.9 (GNU/Linux)
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk1y2ZoACgkQGfr7vsGKgxyR0ACfaSajo7kZFHHZMhRO920agzRs
-8gUAn3jtttT7420us9bf3SvZrYd+R7T+
-=vURI
+iEYEARECAAYFAk8CXmwACgkQGfr7vsGKgxxLMACgtbu7jS1W4KiurYHGn6Ib44kL
+YsEAniswvMva6nOD3M8HyQJltic5jB6U
+=0UQH
 -----END PGP SIGNATURE-----

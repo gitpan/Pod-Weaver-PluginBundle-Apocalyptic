@@ -52,14 +52,16 @@ eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
 eval { $v .= pmver('Module::Build','0.3601') };
 eval { $v .= pmver('Pod::Elemental::Transformer::List','0.101620') };
-eval { $v .= pmver('Pod::Weaver::Config::Assembler','3.101632') };
+eval { $v .= pmver('Pod::Weaver::Config::Assembler','3.101634') };
 eval { $v .= pmver('Pod::Weaver::Plugin::Encoding','0.01') };
 eval { $v .= pmver('Pod::Weaver::Plugin::EnsureUniqueSections','0.103531') };
 eval { $v .= pmver('Pod::Weaver::Plugin::StopWords','1.001005') };
 eval { $v .= pmver('Pod::Weaver::Section::SeeAlso','1.002') };
 eval { $v .= pmver('Pod::Weaver::Section::Support','1.003') };
-eval { $v .= pmver('Pod::Weaver::Section::WarrantyDisclaimer','0.103511') };
+eval { $v .= pmver('Pod::Weaver::Section::WarrantyDisclaimer','0.111290') };
 eval { $v .= pmver('Test::More','0.88') };
+eval { $v .= pmver('strict','any version') };
+eval { $v .= pmver('warnings','any version') };
 
 
 

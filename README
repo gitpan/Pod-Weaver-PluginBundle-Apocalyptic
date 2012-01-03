@@ -3,7 +3,7 @@ NAME
     your POD!
 
 VERSION
-      This document describes v0.002 of Pod::Weaver::PluginBundle::Apocalyptic - released March 05, 2011 as part of Pod-Weaver-PluginBundle-Apocalyptic.
+      This document describes v0.003 of Pod::Weaver::PluginBundle::Apocalyptic - released January 02, 2012 as part of Pod-Weaver-PluginBundle-Apocalyptic.
 
 DESCRIPTION
     In your weaver.ini:
@@ -36,12 +36,15 @@ DESCRIPTION
             [Generic / DESCRIPTION]         ; move the DESCRIPTION section here ( it is required to exist! )
             required = 1
 
-            [Collect / ATTRIBUTES]          ; get any POD marked as =attr and list them here
+            ; get any POD marked with our special types and list them here
+            [Collect / ATTRIBUTES]
             command = attr
-            [Collect / METHODS]             ; get any POD marked as =method and list them here
+            [Collect / METHODS]
             command = method
-            [Collect / FUNCTIONS]           ; get any POD marked as =func and list them here
+            [Collect / FUNCTIONS]
             command = func
+            [Collect / POE Events]
+            command = event
 
             [Leftovers]                     ; any other POD you use
 
@@ -98,41 +101,78 @@ SUPPORT
     be of help to you. As always, in addition to those websites please use
     your favorite search engine to discover more resources.
 
+    *   MetaCPAN
+
+        A modern, open-source CPAN search engine, useful to view POD in HTML
+        format.
+
+        <http://metacpan.org/release/Pod-Weaver-PluginBundle-Apocalyptic>
+
     *   Search CPAN
+
+        The default CPAN search engine, useful to view POD in HTML format.
 
         <http://search.cpan.org/dist/Pod-Weaver-PluginBundle-Apocalyptic>
 
     *   RT: CPAN's Bug Tracker
 
+        The RT ( Request Tracker ) website is the default bug/issue tracking
+        system for CPAN.
+
         <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Pod-Weaver-PluginBundle-Ap
         ocalyptic>
 
-    *   AnnoCPAN: Annotated CPAN documentation
+    *   AnnoCPAN
+
+        The AnnoCPAN is a website that allows community annotations of Perl
+        module documentation.
 
         <http://annocpan.org/dist/Pod-Weaver-PluginBundle-Apocalyptic>
 
     *   CPAN Ratings
 
+        The CPAN Ratings is a website that allows community ratings and
+        reviews of Perl modules.
+
         <http://cpanratings.perl.org/d/Pod-Weaver-PluginBundle-Apocalyptic>
 
     *   CPAN Forum
 
+        The CPAN Forum is a web forum for discussing Perl modules.
+
         <http://cpanforum.com/dist/Pod-Weaver-PluginBundle-Apocalyptic>
 
-    *   CPANTS Kwalitee
+    *   CPANTS
+
+        The CPANTS is a website that analyzes the Kwalitee ( code metrics )
+        of a distribution.
 
         <http://cpants.perl.org/dist/overview/Pod-Weaver-PluginBundle-Apocal
         yptic>
 
-    *   CPAN Testers Results
+    *   CPAN Testers
 
-        <http://cpantesters.org/distro/P/Pod-Weaver-PluginBundle-Apocalyptic
-        .html>
+        The CPAN Testers is a network of smokers who run automated tests on
+        uploaded CPAN distributions.
+
+        <http://www.cpantesters.org/distro/P/Pod-Weaver-PluginBundle-Apocaly
+        ptic>
 
     *   CPAN Testers Matrix
 
+        The CPAN Testers Matrix is a website that provides a visual overview
+        of the test results for a distribution on various Perls/platforms.
+
         <http://matrix.cpantesters.org/?dist=Pod-Weaver-PluginBundle-Apocaly
         ptic>
+
+    *   CPAN Testers Dependencies
+
+        The CPAN Testers Dependencies is a website that shows a chart of the
+        test results of all dependencies for a distribution.
+
+        <http://deps.cpantesters.org/?module=Pod::Weaver::PluginBundle::Apoc
+        alyptic>
 
   Email
     You can email the author of this module at "APOCAL at cpan.org" asking
@@ -182,33 +222,31 @@ AUTHOR
     Apocalypse <APOCAL@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2011 by Apocalypse.
+    This software is copyright (c) 2012 by Apocalypse.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.
 
-    The full text of the license can be found in the LICENSE file included
+    The full text of the license can be found in the 'LICENSE' file included
     with this distribution.
 
 DISCLAIMER OF WARRANTY
-    BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-    FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
-    OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-    PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
-    EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
-    ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
-    YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
-    NECESSARY SERVICING, REPAIR, OR CORRECTION.
+    THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+    APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+    HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT
+    WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+    PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF
+    THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME
+    THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
 
     IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-    WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-    REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE LIABLE
-    TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL, OR
-    CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE
-    SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
-    RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
-    FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
-    SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
-    DAMAGES.
+    WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR
+    CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
+    INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES
+    ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT
+    NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES
+    SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE
+    WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN
+    ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 

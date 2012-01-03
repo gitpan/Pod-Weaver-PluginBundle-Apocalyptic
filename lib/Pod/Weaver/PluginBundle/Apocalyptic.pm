@@ -1,15 +1,15 @@
 #
 # This file is part of Pod-Weaver-PluginBundle-Apocalyptic
 #
-# This software is copyright (c) 2011 by Apocalypse.
+# This software is copyright (c) 2012 by Apocalypse.
 #
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
 use strict; use warnings;
 package Pod::Weaver::PluginBundle::Apocalyptic;
-BEGIN {
-  $Pod::Weaver::PluginBundle::Apocalyptic::VERSION = '0.002';
+{
+  $Pod::Weaver::PluginBundle::Apocalyptic::VERSION = '0.003';
 }
 BEGIN {
   $Pod::Weaver::PluginBundle::Apocalyptic::AUTHORITY = 'cpan:APOCAL';
@@ -18,18 +18,14 @@ BEGIN {
 # ABSTRACT: Let the apocalypse generate your POD!
 
 # The plugins we use ( excluding ones bundled in podweaver )
-use Pod::Weaver::Config::Assembler 3.101632;	# basically sets the pod-weaver version
+use Pod::Weaver::Config::Assembler 3.101634;	# basically sets the pod-weaver version
 use Pod::Weaver::Section::SeeAlso 1.002;
 use Pod::Weaver::Section::Support 1.003;
-use Pod::Weaver::Section::WarrantyDisclaimer 0.103511;
+use Pod::Weaver::Section::WarrantyDisclaimer 0.111290;
 use Pod::Weaver::Plugin::StopWords 1.001005;
 use Pod::Weaver::Plugin::Encoding 0.01;
 use Pod::Weaver::Plugin::EnsureUniqueSections 0.103531;
 use Pod::Elemental::Transformer::List 0.101620;
-
-# TODO follow up on those local patches:
-# Section::WarrantyDisclaimer - specify the warranty version ( https://github.com/DarwinAwardWinner/Pod-Weaver-Section-WarrantyDisclaimer/pull/1 )
-# Section::Legal - add extra line about LICENSE ( https://github.com/rjbs/pod-weaver/pull/4 )
 
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
@@ -78,6 +74,10 @@ sub mvp_bundle_config {
 			header		=> 'FUNCTIONS',
 			command		=> 'func',
 		} ],
+		[ '@Apocalyptic/POEvents',	_exp('Collect'), {
+			header		=> 'POE Events',
+			command		=> 'event',
+		} ],
 
 		# Anything that wasn't matched gets dumped here
 		[ '@Apocalyptic/Leftovers',	_exp('Leftovers'), {} ],
@@ -97,13 +97,11 @@ sub mvp_bundle_config {
 			header		=> 'ACKNOWLEDGEMENTS',
 		} ],
 		[ '@Apocalyptic/Legal',		_exp('Legal'), {
-			# TODO wait for a version that includes this
-			#license_file	=> 'LICENSE',
+			license_file	=> 'LICENSE',
 		} ],
-		[ '@Apocalyptic/Warranty',	_exp('WarrantyDisclaimer'), {
-			# TODO wait for a version that includes this
-			#warranty	=> 'GPL_3',
-		} ],
+
+		# Use the GPL3 warranty disclaimer by default
+		[ '@Apocalyptic/Warranty',	_exp('WarrantyDisclaimer::GPL3'), {} ],
 
 		# Mangle the entire POD
 		[ '@Apocalyptic/ListTransformer',	_exp('-Transformer'), {
@@ -120,7 +118,7 @@ __END__
 =pod
 
 =for :stopwords Apocalypse cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee
-diff irc mailto metadata placeholders
+diff irc mailto metadata placeholders metacpan
 
 =encoding utf-8
 
@@ -132,7 +130,7 @@ Pod::Weaver::PluginBundle::Apocalyptic - Let the apocalypse generate your POD!
 
 =head1 VERSION
 
-  This document describes v0.002 of Pod::Weaver::PluginBundle::Apocalyptic - released March 05, 2011 as part of Pod-Weaver-PluginBundle-Apocalyptic.
+  This document describes v0.003 of Pod::Weaver::PluginBundle::Apocalyptic - released January 02, 2012 as part of Pod-Weaver-PluginBundle-Apocalyptic.
 
 =head1 DESCRIPTION
 
@@ -165,12 +163,15 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[Generic / DESCRIPTION]		; move the DESCRIPTION section here ( it is required to exist! )
 	required = 1
 
-	[Collect / ATTRIBUTES]		; get any POD marked as =attr and list them here
+	; get any POD marked with our special types and list them here
+	[Collect / ATTRIBUTES]
 	command = attr
-	[Collect / METHODS]		; get any POD marked as =method and list them here
+	[Collect / METHODS]
 	command = method
-	[Collect / FUNCTIONS]		; get any POD marked as =func and list them here
+	[Collect / FUNCTIONS]
 	command = func
+	[Collect / POE Events]
+	command = event
 
 	[Leftovers]			; any other POD you use
 
@@ -275,7 +276,17 @@ in addition to those websites please use your favorite search engine to discover
 
 =item *
 
+MetaCPAN
+
+A modern, open-source CPAN search engine, useful to view POD in HTML format.
+
+L<http://metacpan.org/release/Pod-Weaver-PluginBundle-Apocalyptic>
+
+=item *
+
 Search CPAN
+
+The default CPAN search engine, useful to view POD in HTML format.
 
 L<http://search.cpan.org/dist/Pod-Weaver-PluginBundle-Apocalyptic>
 
@@ -283,11 +294,15 @@ L<http://search.cpan.org/dist/Pod-Weaver-PluginBundle-Apocalyptic>
 
 RT: CPAN's Bug Tracker
 
+The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Pod-Weaver-PluginBundle-Apocalyptic>
 
 =item *
 
-AnnoCPAN: Annotated CPAN documentation
+AnnoCPAN
+
+The AnnoCPAN is a website that allows community annotations of Perl module documentation.
 
 L<http://annocpan.org/dist/Pod-Weaver-PluginBundle-Apocalyptic>
 
@@ -295,31 +310,49 @@ L<http://annocpan.org/dist/Pod-Weaver-PluginBundle-Apocalyptic>
 
 CPAN Ratings
 
+The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
+
 L<http://cpanratings.perl.org/d/Pod-Weaver-PluginBundle-Apocalyptic>
 
 =item *
 
 CPAN Forum
 
+The CPAN Forum is a web forum for discussing Perl modules.
+
 L<http://cpanforum.com/dist/Pod-Weaver-PluginBundle-Apocalyptic>
 
 =item *
 
-CPANTS Kwalitee
+CPANTS
+
+The CPANTS is a website that analyzes the Kwalitee ( code metrics ) of a distribution.
 
 L<http://cpants.perl.org/dist/overview/Pod-Weaver-PluginBundle-Apocalyptic>
 
 =item *
 
-CPAN Testers Results
+CPAN Testers
 
-L<http://cpantesters.org/distro/P/Pod-Weaver-PluginBundle-Apocalyptic.html>
+The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
+
+L<http://www.cpantesters.org/distro/P/Pod-Weaver-PluginBundle-Apocalyptic>
 
 =item *
 
 CPAN Testers Matrix
 
+The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
+
 L<http://matrix.cpantesters.org/?dist=Pod-Weaver-PluginBundle-Apocalyptic>
+
+=item *
+
+CPAN Testers Dependencies
+
+The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+
+L<http://deps.cpantesters.org/?module=Pod::Weaver::PluginBundle::Apocalyptic>
 
 =back
 
@@ -378,35 +411,34 @@ Apocalypse <APOCAL@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Apocalypse.
+This software is copyright (c) 2012 by Apocalypse.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
-The full text of the license can be found in the LICENSE file included with this distribution.
+The full text of the license can be found in the
+'LICENSE' file included with this distribution.
 
 =head1 DISCLAIMER OF WARRANTY
 
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT
-WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER
-PARTIES PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND,
-EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE
-SOFTWARE IS WITH YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME
-THE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
 
 IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE LIABLE
-TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL, OR
-CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE
-SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
-RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
-FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
-SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
-DAMAGES.
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
 
 =cut
 
