@@ -1,141 +1,62 @@
 ==================================================
-Changes from 2011-01-03 00:00:00 +0000 to present.
+Changes from 2013-10-25 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.003 at 2012-01-03 01:48:26 +0000
+version 0.004 at 2014-10-25 20:40:21 +0000
 ------------------------------------------
 
-  Change: 66c43d201581ef86afe6fd61da782e595731c7ad
+  Change: b90895917197a87a47f77f697cfd25920e83d609
   Author: Apocalypse <APOCAL@cpan.org>
-  Date : 2012-01-02 18:29:55 +0000
+  Date : 2014-10-24 00:05:50 +0000
 
-    clean up comments 
+    fix docs 
 
-  Change: 0930d37c9cc4a93ea60e808c3c288638f47a5f5e
+  Change: bd3f4465c40b80d7686a2cb1e0099a0e96a2a295
   Author: Apocalypse <APOCAL@cpan.org>
-  Date : 2012-01-02 18:19:44 +0000
+  Date : 2014-10-23 23:57:52 +0000
 
-    use the GPL3 option for WarrantyDisclaimer 
+    move CONTRIBUTORS into head2 
 
-  Change: 37bcd3cd7c2f15e079bd284139d273cdfe5ba15e
+  Change: 2221e0d91589a6b4c6751f6b9bc2a63df4b2fd6f
   Author: Apocalypse <APOCAL@cpan.org>
-  Date : 2012-01-02 18:15:12 +0000
+  Date : 2014-10-23 22:26:20 +0000
 
-    finally use license_file in Section::Legal 
+    add mailmap so Contributors works 
 
-  Change: faa76645bc7789d196a077bc2bea4925a2749d3c
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-04-02 12:21:18 +0000
+  Change: 5e3a25f41359448dababf33da790ec76e56476b1
+  Author: Apocalypse <APOCAL@cpan.org>
+  Date : 2014-10-23 22:06:22 +0000
 
-    add poe events header 
+    fix Changes format 
 
-------------------------------------------
-version 0.002 at 2011-03-06 00:47:45 +0000
-------------------------------------------
+  Change: 52cf2171730b4ed94022f94e90bab2885b15fc13
+  Author: Apocalypse <APOCAL@cpan.org>
+  Date : 2014-10-23 22:04:31 +0000
 
-  Change: c59efd8b44b6b1a350f0bf60e74962e8c5189747
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-03-05 17:47:45 +0000
+    use Section::Contributors 
 
-    New CPAN release of Pod-Weaver-PluginBundle-Apocalyptic - v0.002
+  Change: d7620905b71bbf040ca86880d26603c86f23ae30
+  Author: Apocalypse <APOCAL@cpan.org>
+  Date : 2014-10-23 22:02:30 +0000
 
-    Released: 2011-03-06 00:47:18 UTC
+    set Pod::Weaver version explicitly so we are sure to pick up
+    SingleEncoding 
 
-    Fix a bad typo when loading StopWords, d0h! 
+  Change: 5c9dd722624fa7b818a9e7ee2eba249cc6ecb815
+  Author: Apocalypse <apocalypse@users.noreply.github.com>
+  Date : 2014-10-23 21:54:49 +0000
 
-  Change: 798189cdca8cc4b5fcc16fcf9b5175a9705713e6
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-03-05 17:45:21 +0000
+    Merge pull request #1 from sergeyromanov/master
 
-    d0h StopWords is a Plugin not a Section, dunno how I missed that 
+    change PWP::Encoding to PWP::SingleEncoding 
 
-------------------------------------------
-version 0.001 at 2011-03-06 00:41:06 +0000
-------------------------------------------
+  Change: 3e6d8a0af6796db058f4a47581e0c74469678a0b
+  Author: Sergey Romanov <complefor@rambler.ru>
+  Date : 2013-12-02 20:00:21 +0000
 
-  Change: 021258fab0ec79eda7edbaff0c6dec5f05fbb70f
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-03-05 17:41:06 +0000
+    change PWP::Encoding to PWP::SingleEncoding 
 
-    New CPAN release of Pod-Weaver-PluginBundle-Apocalyptic - v0.001
-
-    Released: 2011-03-06 00:40:43 UTC
-
-    initial release 
-
-  Change: b9d0e1718d9c9466d67c61d2e98794dc3d86ab16
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-03-05 17:40:01 +0000
-
-    add some extra POD stuff 
-
-  Change: c732721ab15f0e2fa8fa02e52d3e66cfda572edd
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-03-04 17:19:38 +0000
-
-    comment out extra features 
-
-  Change: a661002ea82fa9a5745430b9992a27a50064d3dc
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-03-04 17:06:46 +0000
-
-    re-arrange some sections 
-
-  Change: 7cb7b1950588301ac9716ce00371d22d680108cf
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-02-21 11:28:17 +0000
-
-    add Plugin::Encoding, EnsureUniqueSections, and WarrantyDisclaimer 
-
-  Change: 8bd4d6482735523f5e47d93e8481641966d63a0c
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2011-02-02 22:40:10 +0000
-
-    add email to Section::Support and more todos 
-
-  Change: abc26b023a2aa23e17aa1ad90446129ccfbb1c92
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2010-12-16 12:56:16 +0000
-
-    add rwstauner's cool StopWords plugin 
-
-  Change: 0f9711311d0c31cde17356506497ed18bcdf2487
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2010-12-08 00:05:24 +0000
-
-    add irc section to SUPPORT 
-
-  Change: f3b8f13c334de0882ddbc5aeecd8116f9dea8710
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2010-12-05 23:27:55 +0000
-
-    update Support version for new release 
-
-  Change: e0c478b74571e037343f918ea78823f86ba77608
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2010-12-04 17:08:12 +0000
-
-    update version and add note about Encoding 
-
-  Change: 955d6475273c8abcf94b8454b1b791c34b0e7ef9
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2010-12-04 16:38:31 +0000
-
-    minor tweaks 
-
-  Change: 5e02a218a38374d1cb255d9e81df0a0098fe7b67
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2010-06-30 15:06:58 +0000
-
-    modify sample image link 
-
-  Change: e95112a94f542e1f62b7b619336cc7a57f2dbc7a
-  Author: Apocalypse <perl@0ne.us>
-  Date : 2010-06-30 10:03:50 +0000
-
-    first import 
-
-================
-End of releases.
-================
+================================================
+Plus 3 releases after 2013-10-25 00:00:00 +0000.
+================================================

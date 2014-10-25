@@ -1,16 +1,15 @@
 #
 # This file is part of Pod-Weaver-PluginBundle-Apocalyptic
 #
-# This software is copyright (c) 2012 by Apocalypse.
+# This software is copyright (c) 2014 by Apocalypse.
 #
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
 use strict; use warnings;
 package Pod::Weaver::PluginBundle::Apocalyptic;
-{
-  $Pod::Weaver::PluginBundle::Apocalyptic::VERSION = '0.003';
-}
+# git description: release-0.003-8-gb908959
+$Pod::Weaver::PluginBundle::Apocalyptic::VERSION = '0.004';
 BEGIN {
   $Pod::Weaver::PluginBundle::Apocalyptic::AUTHORITY = 'cpan:APOCAL';
 }
@@ -18,14 +17,14 @@ BEGIN {
 # ABSTRACT: Let the apocalypse generate your POD!
 
 # The plugins we use ( excluding ones bundled in podweaver )
-use Pod::Weaver::Config::Assembler 3.101634;	# basically sets the pod-weaver version
+use Pod::Weaver::Config::Assembler 4.001;	# basically sets the pod-weaver version
 use Pod::Weaver::Section::SeeAlso 1.002;
 use Pod::Weaver::Section::Support 1.003;
 use Pod::Weaver::Section::WarrantyDisclaimer 0.111290;
 use Pod::Weaver::Plugin::StopWords 1.001005;
-use Pod::Weaver::Plugin::Encoding 0.01;
 use Pod::Weaver::Plugin::EnsureUniqueSections 0.103531;
 use Pod::Elemental::Transformer::List 0.101620;
+use Pod::Weaver::Section::Contributors 0.008;
 
 sub _exp {
 	Pod::Weaver::Config::Assembler->expand_package( $_[0] );
@@ -37,8 +36,8 @@ sub mvp_bundle_config {
 		[ '@Apocalyptic/CorePrep',	_exp('@CorePrep'), {} ],
 
 		# Move our special markers to the start of the POD
-		[ '@Apocalyptic/Encoding',	_exp('-Encoding'), {} ],
-		[ '@Apocalyptic/PodCoverage',	_exp('Region'), {
+		[ '@Apocalyptic/SingleEncoding', _exp('-SingleEncoding'), {} ],
+		[ '@Apocalyptic/PodCoverage',    _exp('Region'), {
 			region_name	=> 'Pod::Coverage',
 			allow_nonpod	=> 1,
 			flatten		=> 0,
@@ -93,6 +92,9 @@ sub mvp_bundle_config {
 			'email'		=> 'APOCAL',
 		} ],
 		[ '@Apocalyptic/Authors',	_exp('Authors'), {} ],
+		[ '@Apocalyptic/Contributors',	_exp('Contributors'), {
+			'head'	=> 2,
+		} ],
 		[ '@Apocalyptic/ACK',		_exp('Generic'), {
 			header		=> 'ACKNOWLEDGEMENTS',
 		} ],
@@ -113,14 +115,14 @@ sub mvp_bundle_config {
 
 1;
 
-
 __END__
+
 =pod
 
-=for :stopwords Apocalypse cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee
-diff irc mailto metadata placeholders metacpan
+=encoding UTF-8
 
-=encoding utf-8
+=for :stopwords Apocalypse Romanov Sergey cpan testmatrix url annocpan anno bugtracker rt
+cpants kwalitee diff irc mailto metadata placeholders metacpan
 
 =for Pod::Coverage mvp_bundle_config
 
@@ -130,7 +132,7 @@ Pod::Weaver::PluginBundle::Apocalyptic - Let the apocalypse generate your POD!
 
 =head1 VERSION
 
-  This document describes v0.003 of Pod::Weaver::PluginBundle::Apocalyptic - released January 02, 2012 as part of Pod-Weaver-PluginBundle-Apocalyptic.
+  This document describes v0.004 of Pod::Weaver::PluginBundle::Apocalyptic - released October 25, 2014 as part of Pod-Weaver-PluginBundle-Apocalyptic.
 
 =head1 DESCRIPTION
 
@@ -149,8 +151,7 @@ most of the plugins to work, you need to use this in conjunction with L<Dist::Zi
 It is nearly equivalent to the following in your F<weaver.ini>:
 
 	[@CorePrep]			; setup the pod stuff
-	[-Encoding]			; add the =encoding command to your POD via Pod::Weaver::Plugin::Encoding
-	encoding = utf-8
+	[-SingleEncoding]		; add the =encoding command to your Pod
 	[Region / Pod::Coverage]	; move any Pod::Coverage markers to the top ( =for Pod::Coverage foo bar )
 	[-StopWords]			; gather our stopwords and add some extra ones via Pod::Weaver::Plugin::StopWords
 
@@ -182,6 +183,8 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	irc = irc.efnet.org, #perl, Ap0cal
 	email = APOCAL
 	[Authors]			; automatically generate the AUTHOR(S) section
+	[Contributors]			; automatically generate the CONTRIBUTOR(S) section via Dist::Zilla::Plugin::ContributorsFromGit
+	head = 2
 	[Generic / ACKNOWLEDGEMENTS]	; move the ACKNOWLEDGEMENTS section here, if it exists
 	[Legal]				; automatically generate the COPYRIGHT AND LICENSE section
 	[WarrantyDisclaimer]		; automatically generate the DISCLAIMER OF WARRANTY section via Pod::Weaver::Section::WarrantyDisclaimer
@@ -191,6 +194,13 @@ It is nearly equivalent to the following in your F<weaver.ini>:
 	[-EnsureUniqueSections]		; sanity check your sections to make sure they are unique via Pod::Weaver::Plugin::EnsureUniqueSections
 
 If you need something to be configurable ( probably the Support section, ha! ) please let me know and I can add it in a future version.
+
+Oh, the Contributors section is generated from the git history. In my case I had several email addresses that I used to commit in the past and I
+became a contributor to my own project! This was easily solved by fixing the git email addresses via the '.mailmap' file:
+
+	apoc@box:~/eclipse_ws/perl-pod-weaver-pluginbundle-apocalyptic$ cat .mailmap
+	Apocalypse <APOCAL@cpan.org> <apocalypse@users.noreply.github.com>
+	Apocalypse <APOCAL@cpan.org> <perl@0ne.us>
 
 =head1 Future Plans
 
@@ -224,38 +234,6 @@ Please see those modules/websites for more information related to this module.
 =item *
 
 L<Dist::Zilla|Dist::Zilla>
-
-=item *
-
-L<Pod::Weaver|Pod::Weaver>
-
-=item *
-
-L<Pod::Weaver::Plugin::Encoding|Pod::Weaver::Plugin::Encoding>
-
-=item *
-
-L<Pod::Weaver::Plugin::StopWords|Pod::Weaver::Plugin::StopWords>
-
-=item *
-
-L<Pod::Weaver::Section::SeeAlso|Pod::Weaver::Section::SeeAlso>
-
-=item *
-
-L<Pod::Weaver::Section::Support|Pod::Weaver::Section::Support>
-
-=item *
-
-L<Pod::Weaver::Section::WarrantyDisclaimer|Pod::Weaver::Section::WarrantyDisclaimer>
-
-=item *
-
-L<Pod::Elemental::Transformer::List|Pod::Elemental::Transformer::List>
-
-=item *
-
-L<Pod::Weaver::Plugin::EnsureUniqueSections|Pod::Weaver::Plugin::EnsureUniqueSections>
 
 =back
 
@@ -401,7 +379,7 @@ The code is open to the world, and available for you to hack on. Please feel fre
 with it, or whatever. If you want to contribute patches, please send me a diff or prod me to pull
 from your repository :)
 
-L<http://github.com/apocalypse/perl-pod-weaver-pluginbundle-apocalyptic>
+L<https://github.com/apocalypse/perl-pod-weaver-pluginbundle-apocalyptic>
 
   git clone git://github.com/apocalypse/perl-pod-weaver-pluginbundle-apocalyptic.git
 
@@ -409,15 +387,21 @@ L<http://github.com/apocalypse/perl-pod-weaver-pluginbundle-apocalyptic>
 
 Apocalypse <APOCAL@cpan.org>
 
+=head2 CONTRIBUTOR
+
+=for stopwords Sergey Romanov
+
+Sergey Romanov <complefor@rambler.ru>
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Apocalypse.
+This software is copyright (c) 2014 by Apocalypse.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 The full text of the license can be found in the
-'LICENSE' file included with this distribution.
+F<LICENSE> file included with this distribution.
 
 =head1 DISCLAIMER OF WARRANTY
 
@@ -441,4 +425,3 @@ EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGES.
 
 =cut
-
